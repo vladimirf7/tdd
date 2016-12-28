@@ -1,5 +1,5 @@
 from django.http import HttpRequest
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from lists.views import home_page
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -8,7 +8,7 @@ import time
 import unittest
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
 
