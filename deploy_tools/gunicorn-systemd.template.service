@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for SITE
+After=network.target
+
+[Service]
+User=vf
+Group=www-data
+WorkingDirectory=/home/vf/sites/SITE/source
+ExecStart=/home/vf/sites/SITE/venv/bin/gunicorn --bind unix:/tmp/SITE.socket superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+

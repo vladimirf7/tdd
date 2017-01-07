@@ -19,10 +19,10 @@ eg, on Ubuntu:
 * see nginx.template.conf
 * replace SITENAME with, eg, staging.my-domain.com
 
-## Upstart Job
+## Systemd
 
-* see gunicorn-upstart.template.conf
-* replace SITENAME with, eg, staging.my-domain.com
+* see gunicorn-systemd.template.service
+* replace SITE with, eg, staging.com
 
 ## Folder structure:
 Assume we have a user account at /home/username
