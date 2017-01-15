@@ -1,15 +1,14 @@
 from .base import FunctionalTest
 from selenium.webdriver.common.keys import Keys
-import time
+from selenium.webdriver.support import expected_conditions 
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class LayoutAndStylingTest(FunctionalTest):
     def test_layout_and_styling(self):
-        # Edith goes to the home page
         self.browser.get(self.server_url)
         self.browser.set_window_size(1024, 768)
 
-        # She notices the input box is nicely centered
         inputbox = self.get_item_input_box()
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
@@ -19,9 +18,10 @@ class LayoutAndStylingTest(FunctionalTest):
 
         # She starts a new list and sees the input is nicely
         # centered there too
-        inputbox.send_keys('testing\n')
+        inputbox.send_keys('testing')
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
+        WebDriverWait(self.browser, 10).until(expected_conditions
+            .staleness_of(self.get_item_input_box()))
         inputbox = self.get_item_input_box()
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
